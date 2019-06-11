@@ -351,6 +351,8 @@
     <None Include="Assets\OutResource\PolygonNature\Shaders\SyntyStudios_Vines.shader" />
     <None Include="Assets\OutResource\PolygonNature\Shaders\SyntyStudios_Water.shader" />
     <None Include="Assets\OutResource\PolygonNature\Shaders\VS_indirect.cginc" />
+    <None Include="Assets\OutResource\Snow Cover Shader\README.txt" />
+    <None Include="Assets\OutResource\Snow Cover Shader\SnowCover.shader" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Dark.uss" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Light.uss" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Templates\Alert.uxml" />

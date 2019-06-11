@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/SampleScene.unity
+- path: Assets/OutResource/Snow Cover Shader/Sample/samplescene.unity
   isLoaded: 1
   isActive: 1

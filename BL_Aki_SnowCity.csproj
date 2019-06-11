@@ -311,12 +311,33 @@
   <ItemGroup>
     <Compile Include="Assets\OutResource\DAX\Weather Effects\Snow\Demo\DAX_CameraControl_V2_1.cs" />
     <Compile Include="Assets\OutResource\DAX\Weather Effects\Snow\Demo\DAX_PrefGen_V1_2_Snow.cs" />
+    <Compile Include="Assets\OutResource\LitJson\LitJson\IJsonWrapper.cs" />
+    <Compile Include="Assets\OutResource\LitJson\LitJson\JsonAttributes.cs" />
+    <Compile Include="Assets\OutResource\LitJson\LitJson\JsonData.cs" />
+    <Compile Include="Assets\OutResource\LitJson\LitJson\JsonException.cs" />
+    <Compile Include="Assets\OutResource\LitJson\LitJson\JsonMapper.cs" />
+    <Compile Include="Assets\OutResource\LitJson\LitJson\JsonMockWrapper.cs" />
+    <Compile Include="Assets\OutResource\LitJson\LitJson\JsonReader.cs" />
+    <Compile Include="Assets\OutResource\LitJson\LitJson\JsonWriter.cs" />
+    <Compile Include="Assets\OutResource\LitJson\LitJson\Lexer.cs" />
+    <Compile Include="Assets\OutResource\LitJson\LitJson\ParserToken.cs" />
     <Compile Include="Assets\OutResource\ModularRPGHeroesPolyArt\TPController\Scripts\AnimatorMatcher.cs" />
     <Compile Include="Assets\OutResource\ModularRPGHeroesPolyArt\TPController\Scripts\BoolOperator1.cs" />
     <Compile Include="Assets\OutResource\ModularRPGHeroesPolyArt\TPController\Scripts\BoolOperator2.cs" />
     <Compile Include="Assets\OutResource\ModularRPGHeroesPolyArt\TPController\Scripts\CameraManager.cs" />
     <Compile Include="Assets\OutResource\ModularRPGHeroesPolyArt\TPController\Scripts\ControlManager.cs" />
     <Compile Include="Assets\OutResource\ModularRPGHeroesPolyArt\TPController\Scripts\ResetTimer.cs" />
+    <Compile Include="Assets\OutResource\Snow Cover Shader\CoverAPI.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\DialogueSequence.cs" />
+    <Compile Include="Assets\Scripts\Framework\EventDispatcher\EventDispatcher.cs" />
+    <Compile Include="Assets\Scripts\Framework\MonoManager.cs" />
+    <Compile Include="Assets\Scripts\Framework\ResourceLoader.cs" />
+    <Compile Include="Assets\Scripts\Framework\Singleton\MonoSingleton.cs" />
+    <Compile Include="Assets\Scripts\Framework\Singleton\Singleton.cs" />
+    <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
+    <Compile Include="Assets\Scripts\UI\UIDepth.cs" />
+    <Compile Include="Assets\Scripts\UI\UIManager.cs" />
+    <Compile Include="Assets\Scripts\UI\UIScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\OutResource\ModularRPGHeroesPolyArt\ReadMe.txt" />
@@ -328,6 +349,8 @@
     <None Include="Assets\OutResource\PolygonNature\Shaders\SyntyStudios_Vines.shader" />
     <None Include="Assets\OutResource\PolygonNature\Shaders\SyntyStudios_Water.shader" />
     <None Include="Assets\OutResource\PolygonNature\Shaders\VS_indirect.cginc" />
+    <None Include="Assets\OutResource\Snow Cover Shader\README.txt" />
+    <None Include="Assets\OutResource\Snow Cover Shader\SnowCover.shader" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Dark.uss" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Light.uss" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Templates\Alert.uxml" />

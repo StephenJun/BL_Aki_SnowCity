@@ -74,7 +74,7 @@ namespace DM
         
         void FixedUpdate () //Since this is physics based controller, you have to use FixedUpdate.
         {
-            fixedDelta = Time.fixedDeltaTime;    //storing the last frame updated time.             
+            fixedDelta = Time.fixedDeltaTime;    //storing the last frame updated time.  
 
             FixedTick(fixedDelta);   //update anything related to character moving.
             camManager.FixedTick(fixedDelta);     //update anything related to camera moving.       
@@ -93,11 +93,11 @@ namespace DM
         {
            vertical = Input.GetAxis("Vertical");    //for getting vertical input.
            horizontal = Input.GetAxis("Horizontal");    //for getting horizontal input.
-           sprint = Input.GetButton("SprintInput");     //for getting sprint input.
-           jump = Input.GetButtonDown("Jump");      //for getting jump input.
-           normalAttack = Input.GetButtonDown("Fire1"); //for getting normal attack input.
-           comboAttack = Input.GetButtonDown("Fire2");    //for getting combo attack input.
-           roll = Input.GetButtonDown("Fire3");     //for getting roll input.
+           sprint = Input.GetKey(KeyCode.H);     //for getting sprint input.
+           jump = Input.GetKeyDown(KeyCode.Space);      //for getting jump input.
+           normalAttack = Input.GetKeyDown(KeyCode.M); //for getting normal attack input.
+           comboAttack = Input.GetKeyDown(KeyCode.N);    //for getting combo attack input.
+           roll = Input.GetKeyDown(KeyCode.J);     //for getting roll input.
         }
         
         

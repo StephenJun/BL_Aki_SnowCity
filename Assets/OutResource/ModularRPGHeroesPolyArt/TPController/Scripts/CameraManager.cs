@@ -6,9 +6,16 @@ namespace DM
 {
     public class CameraManager : MonoBehaviour
     {
+        //单例模式
+        public static CameraManager singleton;
+
+        private void Awake()
+        {
+            singleton = this;
+        }
+
         public float followSpeed = 9f;  //defines camera speed that follows character.
         public float mouseSpeed = 2f;   //defines mouse's control speed.
-        public float controllerSpeed = 7f;  //defines joypad's control speed.
 
         public Transform target;    //stores the target for camera.
 
@@ -40,18 +47,7 @@ namespace DM
             float h = Input.GetAxis("Mouse X");
             float v = Input.GetAxis("Mouse Y");
 
-            float c_h = Input.GetAxis("RightAxis X");
-            float c_v = Input.GetAxis("RightAxis Y");
-
             float targetSpeed = mouseSpeed;
-
-
-            if(c_h != 0 || c_v != 0)
-            {
-                h = c_h;
-                v = c_v;
-                targetSpeed = controllerSpeed;
-            }
 
             FollowTarget(d);
             HandleRotations(d, v, h, targetSpeed);
@@ -60,8 +56,7 @@ namespace DM
         void FollowTarget(float d)  //defines how camera follows the target.
         {
             float speed = d * followSpeed;
-            Vector3 targetPosition = Vector3.Lerp(transform.position, target.position, speed);
-            transform.position = targetPosition;
+            transform.position = Vector3.Lerp(transform.position, target.position, speed);
         }
 
         void HandleRotations(float d, float v, float h, float targetSpeed)  //defines the rotation of camera.
@@ -75,6 +70,7 @@ namespace DM
             {
                 smoothX = h;
                 smoothY = v;
+                h = 0;
             }            
 
             lookAngle += smoothX * targetSpeed;
@@ -85,14 +81,6 @@ namespace DM
             pivot.localRotation = Quaternion.Euler(tiltAngle, 0, 0);
 
         }
-
-        public static CameraManager singleton;
-
-        private void Awake()
-        {
-            singleton = this;
-        }
-
     }
 }
 
