@@ -7,7 +7,7 @@ public abstract class UIScreen : MonoBehaviour
 
     private object[] _datas;
 
-    public void OnInit(object[] datas)
+    public virtual void OnInit(object[] datas)
     {
         _datas = datas;
     }

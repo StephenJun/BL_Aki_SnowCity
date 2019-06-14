@@ -1,15 +1,22 @@
-﻿using System;
+﻿using LitJson;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueSequence{
 
+    public int FirstDialogueID;
     public List<DialogueData> dialogueDatas;
+
+    public void Asdas()
+    {
+
+    }
 
 }
 
-public class DialogueData
+public class DialogueSData
 {
     public int ID;
     public string speaker;
@@ -18,7 +25,7 @@ public class DialogueData
     public List<int> branchIDs;
     public Action<object[]> callback;
 
-    public DialogueData(int _ID, string _speaker, string _content, string _speakerPortrait, List<int> _branchIDs, Action<object[]> _callback)
+    public DialogueSData(int _ID, string _speaker, string _content, string _speakerPortrait, List<int> _branchIDs, Action<object[]> _callback)
     {
         ID = _ID;
         speaker = _speaker;

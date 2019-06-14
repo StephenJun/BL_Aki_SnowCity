@@ -21,17 +21,16 @@ public class UIManager : MonoSingleton<UIManager>
         {
             screenDic.Add(screens[i].GetType(), screens[i]);
         }
-
     }
 
     //多态， 泛型， where用于约束泛型
-    public T Push<T>(object[] data, bool hidePrevious = true) where T : UIScreen
+    public T Push<T>(bool hidePrevious = true, params object[] data) where T : UIScreen
     {
-        return (T)Push(typeof(T), data, hidePrevious);
+        return (T)Push(typeof(T), hidePrevious, data);
     }
 
     //打开一个新的窗口，并选择是否叠在前一个窗口上
-    public UIScreen Push(Type screenType, object[] data, bool hidePrevious = true)
+    public UIScreen Push(Type screenType, bool hidePrevious = true, params object[] data)
     {
         if (!screenDic.ContainsKey(screenType))
         {
@@ -44,11 +43,10 @@ public class UIManager : MonoSingleton<UIManager>
             screenStacks.Peek().gameObject.SetActive(false);
             screenStacks.Peek().OnHide();
         }
-        UIScreen screenToPush = UnityEngine.Object.Instantiate(screenDic[screenType]);
+        UIScreen screenToPush = UnityEngine.Object.Instantiate(screenDic[screenType], uiRoot);
         screenToPush.OnInit(data);
         screenToPush.OnShow();
         screenToPush.gameObject.name = screenType.Name;
-        screenToPush.transform.SetParent(uiRoot);
         screenStacks.Push(screenToPush);
         return screenToPush;
     }
