@@ -71,7 +71,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
-    - _SnowAmount: 2.3
+    - _SnowAmount: 1.4
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
