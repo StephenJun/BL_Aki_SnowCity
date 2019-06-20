@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventDispatcher
+public class EventDispatcher 
 {
     //数据层要先于显示层更新
     private static EventDispatcher _inner;
@@ -29,12 +29,7 @@ public class EventDispatcher
     }
 
 
-    public Dictionary<string, List<Action<object[]>>> eventPool;
-
-    public void Init()
-    {
-        eventPool = new Dictionary<string, List<Action<object[]>>>();
-    }
+    public Dictionary<string, List<Action<object[]>>> eventPool = new Dictionary<string, List<Action<object[]>>>();
 
     //分发事件
     public void DispatchEvent(string eventName, params object[] data)

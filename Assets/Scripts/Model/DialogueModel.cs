@@ -57,4 +57,36 @@ public class DialogueModel : Singleton<DialogueModel> {
         }
         return res;
     }
+
+    public string[] GetBranchText(int id)
+    {
+        string[] res = null;
+        if (data.ContainsKey(id))
+        {
+            if (data[id]["BranchText"] == "")
+            {
+                return res;
+            }
+            res = data[id]["BranchText"].Split(',');
+        }
+        return res;
+    }
+
+    public List<int> GetBranchCallBackIDs(int id)
+    {
+        List<int> res = new List<int>();
+        if (data.ContainsKey(id))
+        {
+            if (data[id]["CallBack"] == "")
+            {
+                return res;
+            }
+            string[] dataValue = data[id]["CallBack"].Split(',');
+            for (int i = 0, c = dataValue.Length; i < c; i++)
+            {
+                res.Add(int.Parse(dataValue[i]));
+            }
+        }
+        return res;
+    }
 }

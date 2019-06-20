@@ -7,8 +7,10 @@ public class UIManager : MonoSingleton<UIManager>
 {
 
     public Dictionary<Type, UIScreen> screenDic;
-    private Stack<UIScreen> screenStacks;
+    private Stack<UIScreen> screenStacks;  //栈
     private Transform uiRoot;
+    private List<int> res = new List<int>();
+    private Stack<int> stack = new Stack<int>();
 
     //非静态的字段，变量，属性不能用于静态的函数下
     public void Init()
@@ -23,7 +25,7 @@ public class UIManager : MonoSingleton<UIManager>
         }
     }
 
-    //多态， 泛型， where用于约束泛型
+    //重载， 泛型， where用于约束泛型
     public T Push<T>(bool hidePrevious = true, params object[] data) where T : UIScreen
     {
         return (T)Push(typeof(T), hidePrevious, data);

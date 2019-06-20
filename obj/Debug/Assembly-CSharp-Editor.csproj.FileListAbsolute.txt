@@ -119,7 +119,6 @@ F:\GitHub\Biggerlab_Ryan_Git\BL_Aki_SnowCity\Temp\bin\Debug\Boo.Lang.PatternMatc
 F:\GitHub\Biggerlab_Ryan_Git\BL_Aki_SnowCity\Temp\bin\Debug\Boo.Lang.Useful.dll
 F:\GitHub\Biggerlab_Ryan_Git\BL_Aki_SnowCity\Temp\bin\Debug\Unity.CecilTools.dll
 F:\GitHub\Biggerlab_Ryan_Git\BL_Aki_SnowCity\Temp\bin\Debug\Unity.Cecil.Pdb.dll
-F:\GitHub\Biggerlab_Ryan_Git\BL_Aki_SnowCity\Temp\bin\Debug\Assembly-CSharp.pdb
 F:\GitHub\Biggerlab_Ryan_Git\BL_Aki_SnowCity\Temp\bin\Debug\UnityEngine.xml
 F:\GitHub\Biggerlab_Ryan_Git\BL_Aki_SnowCity\Temp\bin\Debug\UnityEditor.xml
 F:\GitHub\Biggerlab_Ryan_Git\BL_Aki_SnowCity\Temp\bin\Debug\UnityEngine.AIModule.xml

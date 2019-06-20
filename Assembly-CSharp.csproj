@@ -134,8 +134,12 @@
     <Compile Include="Assets\OutResource\ModularRPGHeroesPolyArt\TPController\Scripts\ControlManager.cs" />
     <Compile Include="Assets\OutResource\ModularRPGHeroesPolyArt\TPController\Scripts\ResetTimer.cs" />
     <Compile Include="Assets\OutResource\Snow Cover Shader\CoverAPI.cs" />
+    <Compile Include="Assets\Scripts\Data\CallBackData.cs" />
     <Compile Include="Assets\Scripts\Data\DialogueData.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueSequence.cs" />
+    <Compile Include="Assets\Scripts\Framework\Audio\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Framework\Audio\AudioSourceInfo.cs" />
+    <Compile Include="Assets\Scripts\Framework\EventDispatcher\EventConst.cs" />
     <Compile Include="Assets\Scripts\Framework\EventDispatcher\EventDispatcher.cs" />
     <Compile Include="Assets\Scripts\Framework\MonoManager.cs" />
     <Compile Include="Assets\Scripts\Framework\ResourceLoader.cs" />
@@ -143,6 +147,7 @@
     <Compile Include="Assets\Scripts\Framework\Singleton\Singleton.cs" />
     <Compile Include="Assets\Scripts\GameEntry.cs" />
     <Compile Include="Assets\Scripts\Gameplay\InteractableObj.cs" />
+    <Compile Include="Assets\Scripts\Model\CallBackModel.cs" />
     <Compile Include="Assets\Scripts\Model\DialogueModel.cs" />
     <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\Scripts\UI\UIDepth.cs" />
