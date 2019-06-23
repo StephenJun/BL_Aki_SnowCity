@@ -1,8 +1,15 @@
-BiggerLab_YHY_JanitorSimulator/Library
+Library/
 
-BiggerLab_YHY_JanitorSimulator/obj
+obj/
 
-BiggerLab_YHY_JanitorSimulator/Temp
+Temp/
 
-BiggerLab_YHY_JanitorSimulator/obj
-*.lock
+Debug/
+
+.vs/
+
+.git/
+
+.csproj/
+
+.sln/

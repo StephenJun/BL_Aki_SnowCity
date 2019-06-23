@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class UIManager : MonoSingleton<UIManager>
 {
-
     public Dictionary<Type, UIScreen> screenDic;
+    //用于记录所有已经打开的Ui界面的
     private Stack<UIScreen> screenStacks;  //栈
     private Transform uiRoot;
     private List<int> res = new List<int>();
@@ -26,13 +26,14 @@ public class UIManager : MonoSingleton<UIManager>
     }
 
     //重载， 泛型， where用于约束泛型
+    //Push用打开某个UI界面
     public T Push<T>(bool hidePrevious = true, params object[] data) where T : UIScreen
     {
         return (T)Push(typeof(T), hidePrevious, data);
     }
 
     //打开一个新的窗口，并选择是否叠在前一个窗口上
-    public UIScreen Push(Type screenType, bool hidePrevious = true, params object[] data)
+    private UIScreen Push(Type screenType, bool hidePrevious = true, params object[] data)
     {
         if (!screenDic.ContainsKey(screenType))
         {

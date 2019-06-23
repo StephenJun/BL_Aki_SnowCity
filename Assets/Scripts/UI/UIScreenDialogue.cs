@@ -65,8 +65,16 @@ public class UIScreenDialogue : UIScreen {
             yield return new WaitForSeconds(0.05f);
         }
 
+        
+
         //对话字幕显示完毕后显示选项按钮
         List<int> branches = DialogueModel.Instance.GetBranchDialogueIDs(currentDialogueID);
+        //如果没有后续对话，就关闭该对话窗口
+        if(branches.Count == 0)
+        {
+            UIManager.Instance.Pop();
+        }
+
         for (int i = 0, c = branches.Count; i < c; i++)
         {
             optionsBtn[i].gameObject.SetActive(true);

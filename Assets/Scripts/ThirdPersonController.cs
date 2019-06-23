@@ -67,7 +67,7 @@ public class ThirdPersonController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space) && onGround)
         {
             anim.CrossFade("falling", 0.1f);
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Force);
             previousVelocity = rb.velocity;
         }
 

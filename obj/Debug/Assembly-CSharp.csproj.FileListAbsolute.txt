@@ -171,5 +171,3 @@ F:\GitHub\Biggerlab_Ryan_Git\BL_Aki_SnowCity\obj\Debug\Assembly-CSharp.csproj.Co
 F:\GitHub\Biggerlab_Ryan_Git\BL_Aki_SnowCity\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 F:\GitHub\Biggerlab_Ryan_Git\BL_Aki_SnowCity\obj\Debug\Assembly-CSharp.dll
 F:\GitHub\Biggerlab_Ryan_Git\BL_Aki_SnowCity\obj\Debug\Assembly-CSharp.pdb
-F:\GitHub\Biggerlab_Ryan_Git\BL_Aki_SnowCity\Temp\bin\Debug\UnityEditor.UI.dll
-F:\GitHub\Biggerlab_Ryan_Git\BL_Aki_SnowCity\Temp\bin\Debug\UnityEditor.UI.xml
