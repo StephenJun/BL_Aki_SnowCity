@@ -1,20 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoSingleton<AudioManager> {
 
 	public GameObject go_Music;
 	public GameObject go_UI;
+    public AudioMixer mixer;
 	private AudioSourceInfo asi_BGM;
 	private AudioSourceInfo asi_UI;
 
-	private void Init()
+	public void Init()
 	{
 		asi_BGM = new AudioSourceInfo(go_Music);
 		asi_UI = new AudioSourceInfo(go_UI);
 	}
 
+	public void PlaySFX(AudioClip clip)
+	{
+		asi_UI.Clip = clip;
+		asi_UI.Play();
+	}
+	
 	public void PlayMusic(MusicAudio music)
 	{
 		AudioClip musicToPlay = Resources.Load<AudioClip>("Audio/Music/" + music.ToString());
@@ -34,9 +42,23 @@ public class AudioManager : MonoSingleton<AudioManager> {
         asi_BGM.Stop();
     }
 
-	
+	public void MuteAudio(bool mute)
+    {
+        asi_BGM.audioSource.mute = mute;
+        asi_UI.audioSource.mute = mute;
+    }
 
-	public void TogglePauseMusic()
+    public void SetMusicVolume(float value)
+    {
+        mixer.SetFloat("musicVolume", value);
+    }
+
+    public void SetSFXVolume(float value)
+    {
+        mixer.SetFloat("sfxVolume", value);
+    }
+
+    public void TogglePauseMusic()
 	{
 		if (asi_BGM.audioState == AudioState.IsPlaying)
 		{
@@ -52,10 +74,10 @@ public class AudioManager : MonoSingleton<AudioManager> {
 
 public enum MusicAudio
 {
-    Tutorial,
-    ThisIsWhatYouCameFor,
-    Rise,
-    Escape
+    FailureAudio,
+    VictoryAudio,
+    InGameAudio,
+    MainMenuAudio
 }
 
 public enum SFXAudio

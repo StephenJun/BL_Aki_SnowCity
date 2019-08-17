@@ -72,7 +72,7 @@ public class UIScreenDialogue : UIScreen {
         //如果没有后续对话，就关闭该对话窗口
         if(branches.Count == 0)
         {
-            UIManager.Instance.Pop();
+            UIManager.Instance.Pop(UIDepthConst.TopDepth);
         }
 
         for (int i = 0, c = branches.Count; i < c; i++)

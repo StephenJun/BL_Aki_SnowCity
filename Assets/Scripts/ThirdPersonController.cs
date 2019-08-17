@@ -82,7 +82,7 @@ public class ThirdPersonController : MonoBehaviour {
             if(_InterObjs.Count != 0)
             {
                 Debug.Log("Hi，NPC！");
-                UIManager.Instance.Push<UIScreenDialogue>(false, 1001);
+                UIManager.Instance.Push<UIScreenDialogue>(UIDepthConst.TopDepth, false, 1001);
                 _InterObjs[0].OnInteracted(this);
             }
         }

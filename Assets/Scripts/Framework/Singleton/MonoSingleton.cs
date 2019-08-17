@@ -1,11 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
 
     protected static bool isGlobal = true;
+
+    private void Awake()
+    {
+        if(_instance != null)
+            Destroy(this.gameObject);
+    }
 
     private static T _instance;
     public static T Instance
@@ -15,9 +23,14 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
             if (_instance == null)
             {
                 _instance = FindObjectOfType<T>();
-                if (FindObjectsOfType<T>().Length > 1)
+                T[] singletons = FindObjectsOfType<T>();
+                if (singletons.Length > 1)
                 {
                     Debug.LogWarning("Singleton of type " + typeof(T).Name + " should never be more than one in scene");
+                    for (int i = 0, c = singletons.Length; i < c - 1; i++)
+                    {
+                        Destroy(singletons[1].gameObject);
+                    }
                     return _instance;
                 }
 

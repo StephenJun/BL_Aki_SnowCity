@@ -61,6 +61,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\OutResource\Cinemachine\Base\Runtime\Behaviours\CinemachineBlendListCamera.cs" />
     <Compile Include="Assets\OutResource\Cinemachine\Base\Runtime\Behaviours\CinemachineBrain.cs" />
     <Compile Include="Assets\OutResource\Cinemachine\Base\Runtime\Behaviours\CinemachineClearShot.cs" />
@@ -136,15 +143,18 @@
     <Compile Include="Assets\OutResource\Snow Cover Shader\CoverAPI.cs" />
     <Compile Include="Assets\Scripts\Data\CallBackData.cs" />
     <Compile Include="Assets\Scripts\Data\DialogueData.cs" />
-    <Compile Include="Assets\Scripts\Framework\Audio\AudioManager.cs" />
-    <Compile Include="Assets\Scripts\Framework\Audio\AudioSourceInfo.cs" />
-    <Compile Include="Assets\Scripts\Framework\EventDispatcher\EventConst.cs" />
-    <Compile Include="Assets\Scripts\Framework\EventDispatcher\EventDispatcher.cs" />
-    <Compile Include="Assets\Scripts\Framework\MonoManager.cs" />
-    <Compile Include="Assets\Scripts\Framework\ResourceLoader.cs" />
-    <Compile Include="Assets\Scripts\Framework\Singleton\MonoSingleton.cs" />
-    <Compile Include="Assets\Scripts\Framework\Singleton\Singleton.cs" />
-    <Compile Include="Assets\Scripts\GameEntry.cs" />
+    <Compile Include="Assets\Scripts\FrameWork\Audio\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\FrameWork\Audio\AudioSourceInfo.cs" />
+    <Compile Include="Assets\Scripts\FrameWork\Audio\ButtonClicks.cs" />
+    <Compile Include="Assets\Scripts\FrameWork\EventDispatcher\EventConst.cs" />
+    <Compile Include="Assets\Scripts\FrameWork\EventDispatcher\EventDispatcher.cs" />
+    <Compile Include="Assets\Scripts\FrameWork\GameEntry.cs" />
+    <Compile Include="Assets\Scripts\FrameWork\JSGameManager.cs" />
+    <Compile Include="Assets\Scripts\FrameWork\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\FrameWork\MonoManager.cs" />
+    <Compile Include="Assets\Scripts\FrameWork\ResourceLoader.cs" />
+    <Compile Include="Assets\Scripts\FrameWork\Singleton\MonoSingleton.cs" />
+    <Compile Include="Assets\Scripts\FrameWork\Singleton\Singleton.cs" />
     <Compile Include="Assets\Scripts\Gameplay\InteractableObj.cs" />
     <Compile Include="Assets\Scripts\Model\CallBackModel.cs" />
     <Compile Include="Assets\Scripts\Model\DialogueModel.cs" />
@@ -152,10 +162,20 @@
     <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\Scripts\UI\UIDepth.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
-    <Compile Include="Assets\Scripts\UI\UIScreen.cs" />
+    <Compile Include="Assets\Scripts\UI\UIScreen\UIMessage.cs" />
+    <Compile Include="Assets\Scripts\UI\UIScreen\UIMessageInGame.cs" />
+    <Compile Include="Assets\Scripts\UI\UIScreen\UIScreen.cs" />
+    <Compile Include="Assets\Scripts\UI\UIScreen\UIScreenCredits.cs" />
+    <Compile Include="Assets\Scripts\UI\UIScreen\UIScreenHUD.cs" />
+    <Compile Include="Assets\Scripts\UI\UIScreen\UIScreenLevelSelection.cs" />
+    <Compile Include="Assets\Scripts\UI\UIScreen\UIScreenLoading.cs" />
+    <Compile Include="Assets\Scripts\UI\UIScreen\UIScreenMainMenu.cs" />
+    <Compile Include="Assets\Scripts\UI\UIScreen\UIScreenOptions.cs" />
+    <Compile Include="Assets\Scripts\UI\UIScreen\UIScreenPause.cs" />
+    <Compile Include="Assets\Scripts\UI\UIScreen\UIScreenQuitConfirm.cs" />
+    <Compile Include="Assets\Scripts\UI\UIScreen\UIScreenResult.cs" />
     <Compile Include="Assets\Scripts\UI\UIScreenDialogue.cs" />
-    <Compile Include="Assets\Scripts\UI\UIScreenHUD.cs" />
-    <Compile Include="Assets\Scripts\UI\UIScreenMainMenu.cs" />
+    <Compile Include="Assets\Scripts\UI\UIUtilities.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\OutResource\PolygonNature\Shaders\SyntyStudios_Trees.shader" />
@@ -171,6 +191,7 @@
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\OutResource\PolygonNature\Shaders\SyntyStudios_Water.shader" />
+    <None Include="Assets\Demigiant\DOTween\readme.txt" />
     <None Include="Assets\OutResource\ModularRPGHeroesPolyArt\ReadMe.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\OutResource\CasualUI\ReadMe.txt" />
@@ -404,6 +425,9 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/steph/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>F:/GitHub/Biggerlab_Ryan_Git/BL_Aki_SnowCity/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>F:/Unity2019.1.1/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>
