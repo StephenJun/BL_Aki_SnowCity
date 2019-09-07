@@ -6,6 +6,7 @@ public class InteractableObj : MonoBehaviour {
 
     public InteractiveLayer layer;
     public Transform focusOn;
+    public int ID;
 
     public void OnInteracted(ThirdPersonController player)
     {

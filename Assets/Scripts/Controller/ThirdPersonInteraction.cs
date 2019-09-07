@@ -15,7 +15,21 @@ public class ThirdPersonInteraction : MonoBehaviour {
         m_camera = Camera.main;
     }
 
-    public void SearchInteractableObj()
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            UIManager.Instance.Push<UIScreenDialogue>(UIDepthConst.MiddleDepth, false, 10001);
+            interactableObj = SearchInteractableObj();
+            if (interactableObj)
+            {
+                print("交互");
+                
+            }
+        }
+    }
+
+    public InteractableObj SearchInteractableObj()
     {
         Ray ray = m_camera.ScreenPointToRay(new Vector2(Screen.width, Screen.height)/2);
         RaycastHit hit;
@@ -24,9 +38,10 @@ public class ThirdPersonInteraction : MonoBehaviour {
             InteractableObj obj = hit.collider.GetComponentInChildren<InteractableObj>();
             if(obj != null)
             {
-                interactableObj = obj;
+                return obj;
             }
         }
+        return null;
     }
 
 }

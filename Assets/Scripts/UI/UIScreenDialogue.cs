@@ -1,61 +1,84 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UIScreenDialogue : UIScreen {
 
+    [System.Serializable]
+    public class OptionButton
+    {
+        public CanvasGroup cg;
+        public Button btn;
+        public Text txt;
+    }
+
     [Header("Components")]
-    public Text txt_leftSpeakerName;
-    public Text txt_rightSpeakerName;
+    [Space]
+    public Text txt_SpeakerName;
     public Text txt_dialogueContent;
-    public RawImage rImg_leftPortrait;
-    public RawImage rImg_rightPortrait;
-    public Button[] optionsBtn;
+    public Image img_SpeakerPortrait;
+    public OptionButton[] optionsBtns;
+    public Button continueBtn;
+    public GameObject continueNotice;
 
     private string currentDialogueContent;
     private int currentDialogueID;
 
-
-    private bool allowInput;
-
-    public override void OnInit(object[] datas)
+    protected override void InitData()
     {
-        base.OnInit(datas);
+        base.InitData();
         currentDialogueID = ParseDataByIndex<int>(0);
-        EventDispatcher.Inner.AddEventListener(EventConst.EVENT_PRINT, PrintAAA);
+    }
+
+    protected override void InitView()
+    {
+        base.InitView();
+        for (int i = 0; i < optionsBtns.Length; i++)
+        {
+            optionsBtns[i].cg.alpha = 0;
+            optionsBtns[i].cg.interactable = false;
+        }
+        continueBtn.gameObject.SetActive(false);
+        continueNotice.gameObject.SetActive(false);
     }
 
     public override void OnClose()
     {
-        throw new System.NotImplementedException();
+        base.OnClose();
+        for (int i = 0; i < optionsBtns.Length; i++)
+        {
+            optionsBtns[i].btn.onClick.RemoveAllListeners();
+        }
+        continueBtn.onClick.RemoveAllListeners();
     }
 
     public override void OnHide()
     {
-        throw new System.NotImplementedException();
+        base.OnHide();
     }
 
     public override void OnShow()
     {
+        base.OnShow();
         ShowNextDialogue();
     }
 
     public void ShowNextDialogue()
     {
-        SetBtnEnability(false);
-        string content = DialogueModel.Instance.GetDialogueContent(currentDialogueID);
+        string content = DialogueModel.Instance.GetContent(currentDialogueID);
         string speakerName = DialogueModel.Instance.GetSpeakerName(currentDialogueID);
-        bool inRight = DialogueModel.Instance.GetInRight(currentDialogueID);
-        (inRight == true ? txt_rightSpeakerName : txt_leftSpeakerName).text = speakerName;  //三元表达式
-
+        string portraitPath = DialogueModel.Instance.GetSpeakerPortraitPath(currentDialogueID);
+        txt_SpeakerName.text = speakerName;
+        img_SpeakerPortrait.sprite = ResourceLoader.Instance.Load<Sprite>(portraitPath);
         StartCoroutine(ShowDialogueProgress(content));
     }
 
     private IEnumerator ShowDialogueProgress(string content)
     {
+        print(content);
         StringBuilder sb = new StringBuilder();
         char[] charArray = content.ToCharArray();
         for (int i = 0, c = charArray.Length; i < c; i++)
@@ -65,60 +88,60 @@ public class UIScreenDialogue : UIScreen {
             yield return new WaitForSeconds(0.05f);
         }
 
-        
+        bool isLast = DialogueModel.Instance.IsLast(currentDialogueID);
+        if (isLast)
+        {
+            continueBtn.gameObject.SetActive(true);
+            continueBtn.onClick.AddListener(() => OnContinueButtonClicked(true));
+            yield break;
+        }
+
 
         //对话字幕显示完毕后显示选项按钮
-        List<int> branches = DialogueModel.Instance.GetBranchDialogueIDs(currentDialogueID);
-        //如果没有后续对话，就关闭该对话窗口
-        if(branches.Count == 0)
+        bool hasBranch = DialogueModel.Instance.HasBranch(currentDialogueID);
+        if (hasBranch)
         {
-            UIManager.Instance.Pop(UIDepthConst.TopDepth);
-        }
-
-        for (int i = 0, c = branches.Count; i < c; i++)
-        {
-            optionsBtn[i].gameObject.SetActive(true);
-            optionsBtn[i].GetComponentInChildren<Text>().text = DialogueModel.Instance.GetBranchText(currentDialogueID)[i];
-            int id = i;
-            optionsBtn[i].onClick.AddListener(() => {
-                CallBackModel.Instance.InvokeMethod(DialogueModel.Instance.GetBranchCallBackIDs(currentDialogueID)[id]);
-                ShowNextDialogue();
-            });
-        }
-    }
-
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            //print(DialogueModel.Instance.GetBranchDialogueIDs(currentDialogueID).Count);
-            List<int> nextID = DialogueModel.Instance.GetBranchDialogueIDs(currentDialogueID);
-            if(nextID.Count > 1)
+            List<DialogueBranchData> data = DialogueModel.Instance.GetBranch(currentDialogueID);
+            for (int i = 0; i < data.Count; i++)
             {
-
-            }
-            else
-            {
-                int cbID = DialogueModel.Instance.GetBranchCallBackIDs(currentDialogueID)[0];
-                CallBackModel.Instance.InvokeMethod(cbID);
-                currentDialogueID = nextID[0];
-                ShowNextDialogue();
+                int tmp = i;
+                optionsBtns[i].txt.text = data[i].content;
+                optionsBtns[i].cg.DOFade(1, 0.5f).onComplete = () =>
+                {
+                    optionsBtns[tmp].btn.onClick.AddListener(() => OnOptionButtonClicked(data[tmp].eventName, data[tmp].nextID));
+                    optionsBtns[tmp].cg.interactable = true;
+                };
             }
         }
-    }
-
-    private void SetBtnEnability(bool enable)
-    {
-        for (int i = 0, c = optionsBtn.Length; i < c; i++)
+        else
         {
-            optionsBtn[i].gameObject.SetActive(enable);
-            optionsBtn[i].onClick.RemoveAllListeners();
+            continueBtn.onClick.AddListener(() => OnContinueButtonClicked(false));
+            continueBtn.gameObject.SetActive(true);
+            continueNotice.gameObject.SetActive(false);
         }
     }
 
-    private void PrintAAA(object[] a)
+
+    private void OnOptionButtonClicked(string eventName, int nextID)
     {
-        print(a[0].ToString() + a[1].ToString());
+        UIManager.Instance.Pop(UIDepthConst.MiddleDepth);
+        EventDispatcher.Inner.DispatchEvent(eventName);
+        UIManager.Instance.Push<UIScreenDialogue>(UIDepthConst.MiddleDepth, false, nextID);
     }
+
+    private void OnContinueButtonClicked(bool isLast)
+    {
+        if (isLast)
+        {
+            UIManager.Instance.Pop(UIDepthConst.MiddleDepth);
+        }
+        else
+        {
+            DialogueBranchData nextData = DialogueModel.Instance.GetBranch(currentDialogueID)[0];
+            UIManager.Instance.Pop(UIDepthConst.MiddleDepth);
+            EventDispatcher.Inner.DispatchEvent(nextData.eventName);
+            UIManager.Instance.Push<UIScreenDialogue>(UIDepthConst.MiddleDepth, false, nextData.nextID);
+        }
+    }
+
 }

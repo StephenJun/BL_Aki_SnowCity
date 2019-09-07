@@ -4,6 +4,15 @@
 /obj/*
 /.vs/*
 /.idea/*
+/Assets/Z_Class/*
 *.csproj
 *.sln
 *.user
+/.vs/BL_Aki_SnowCity/v15/Server/sqlite3/storage.ide-wal
+/.vs/BL_Aki_SnowCity/v15/Server/sqlite3/storage.ide-shm
+/.vs/BL_Aki_SnowCity/v15/Server/sqlite3/storage.ide
+/.vs/BL_Aki_SnowCity/v15/.suo
+/.vs/BL_Aki_SnowCity/v15/.suo
+/.vs/BL_Aki_SnowCity/v15/Server/sqlite3/storage.ide
+/.vs/BL_Aki_SnowCity/v15/Server/sqlite3/storage.ide-shm
+/.vs/BL_Aki_SnowCity/v15/Server/sqlite3/storage.ide-wal

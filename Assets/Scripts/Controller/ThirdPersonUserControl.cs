@@ -50,12 +50,6 @@ public class ThirdPersonUserControl : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            //交互
-            UIManager.Instance.Push<UIScreenDialogue>(UIDepthConst.TopDepth, false, 1001);
-        }
-
         // 计算移动方向，并传递给角色  
         if (m_Cam != null)
         {

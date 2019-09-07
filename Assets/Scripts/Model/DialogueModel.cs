@@ -2,17 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueModel : Singleton<DialogueModel> {
-
+public class DialogueModel : Singleton<DialogueModel>
+{
     public Dictionary<int, Dictionary<string, string>> data;
     public DialogueModel()
     {
         data = DialogueData.Instance.data;
     }
 
-    public string GetDialogueContent(int id)
+    public int GetConditionID(int id)
     {
-        string res = string.Empty;
+        int res = -1;
+        if (data.ContainsKey(id))
+        {
+            res = int.Parse(data[id]["ConditionID"]);
+        }
+        return res;
+    }
+
+    public string GetSpeakerName(int id)
+    {
+        string res = "";
+        if (data.ContainsKey(id))
+        {
+            int characterID = int.Parse(data[id]["SpeakerID"]);
+            res = CharacterModel.Instance.GetCharacterName(characterID);
+        }
+        return res;
+    }
+
+    public string GetSpeakerPortraitPath(int id)
+    {
+        string res = "";
+        if (data.ContainsKey(id))
+        {
+            int characterID = int.Parse(data[id]["SpeakerID"]);
+            res = CharacterModel.Instance.GetPortraitPath(characterID);
+        }
+        return res;
+    }
+
+    public string GetContent(int id)
+    {
+        string res = "";
         if (data.ContainsKey(id))
         {
             res = data[id]["Content"];
@@ -20,73 +52,60 @@ public class DialogueModel : Singleton<DialogueModel> {
         return res;
     }
 
-    public string GetSpeakerName(int id)
+    public bool IsLast(int id)
     {
-        string res = string.Empty;
-        if (data.ContainsKey(id))
+        return string.IsNullOrEmpty(GetBranchContent(id));
+    }
+
+    public bool HasBranch(int id)
+    {
+        string[] branches = GetBranchContent(id).Split('|');
+        return branches.Length > 1;
+    }
+
+    public List<DialogueBranchData> GetBranch(int id)
+    {
+        List<DialogueBranchData> res = new List<DialogueBranchData>();
+        string[] branches = GetBranchContent(id).Split('|');
+        for (int i = 0; i < branches.Length; i++)
         {
-            res = data[id]["SpeakerName"];
+            string[] branchData = branches[i].Split('-');
+            res.Add(new DialogueBranchData(branchData[0], branchData[1], int.Parse(branchData[2])));
         }
         return res;
     }
 
-    public bool GetInRight(int id)
+    public string GetLastWord(int id)
     {
-        bool res = false;
+        string res = "";
         if (data.ContainsKey(id))
         {
-            bool.TryParse(data[id]["InRight"], out res);
+            res = data[id]["LastWord"];
         }
         return res;
     }
 
-    public List<int> GetBranchDialogueIDs(int id)
+    private string GetBranchContent(int id)
     {
-        List<int> res = new List<int>();
+        string res = "";
         if (data.ContainsKey(id))
         {
-            if(data[id]["BranchIDs"] == "")
-            {
-                return res;
-            }
-            string[] dataValue = data[id]["BranchIDs"].Split(',');
-            for (int i = 0, c= dataValue.Length; i < c; i++)
-            {
-                res.Add(int.Parse(dataValue[i]));
-            }
+            res = data[id]["Branch"];
         }
         return res;
     }
+}
 
-    public string[] GetBranchText(int id)
-    {
-        string[] res = null;
-        if (data.ContainsKey(id))
-        {
-            if (data[id]["BranchText"] == "")
-            {
-                return res;
-            }
-            res = data[id]["BranchText"].Split(',');
-        }
-        return res;
-    }
+public struct DialogueBranchData
+{
+    public string content;
+    public string eventName;
+    public int nextID;
 
-    public List<int> GetBranchCallBackIDs(int id)
+    public DialogueBranchData(string _content, string _eventName, int _nextId)
     {
-        List<int> res = new List<int>();
-        if (data.ContainsKey(id))
-        {
-            if (data[id]["CallBack"] == "")
-            {
-                return res;
-            }
-            string[] dataValue = data[id]["CallBack"].Split(',');
-            for (int i = 0, c = dataValue.Length; i < c; i++)
-            {
-                res.Add(int.Parse(dataValue[i]));
-            }
-        }
-        return res;
+        content = _content;
+        eventName = _eventName;
+        nextID = _nextId;
     }
 }
